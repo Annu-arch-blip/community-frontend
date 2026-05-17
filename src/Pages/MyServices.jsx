@@ -26,7 +26,7 @@ function MyServices() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/my-services",
+        `${API}/my-services`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

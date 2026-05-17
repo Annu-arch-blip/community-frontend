@@ -8,7 +8,7 @@ function FindServices() {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate("/results", {
+    navigate("/search", {
       state: { serviceType: service, city }
     });
   };
@@ -34,7 +34,7 @@ function FindServices() {
           <option value="Electrician">Electrician</option>
           <option value="house helper">House Helper</option>
           <option value="Local Grocery Shop">Local Grocery Shop</option>
-          <option value="Beauty Parlour">Peauty Parlour</option>
+          <option value="Beauty Parlour">Beauty Parlour</option>
           <option value="Home Kitchen">Home Kitchen</option>
           <option value="MilkMan">MilkMan</option>
           

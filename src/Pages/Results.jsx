@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
+const API = process.env.REACT_APP_API_URL;
+
 export default function Results() {
   const location = useLocation();
   const { serviceType, city } = location.state || {};
@@ -16,18 +18,18 @@ export default function Results() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/services")
+      .get(`${API}/services`)
       .then((res) => setServices(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   const normalize = (s) => (s || "").toLowerCase().trim();
 
-  // filter by category  and address contains city
+  // safe filtering
   const filtered = services.filter(
     (s) =>
-      normalize(s.category) === normalize(serviceType) &&
-      normalize(s.address).includes(normalize(city))
+      normalize(s.category) === normalize(serviceType || "") &&
+      normalize(s.address).includes(normalize(city || ""))
   );
 
   return (
@@ -58,7 +60,17 @@ export default function Results() {
   );
 }
 
-function Card({ item, reviewsData, ratingsData, setReviewsData, setRatingsData }) {
+// ---------------- CARD COMPONENT ----------------
+
+
+
+function Card({
+  item,
+  reviewsData,
+  ratingsData,
+  setReviewsData,
+  setRatingsData
+}) {
   const [review, setReview] = useState("");
 
   const serviceRatings = ratingsData[item.name] || [];
@@ -67,17 +79,26 @@ function Card({ item, reviewsData, ratingsData, setReviewsData, setRatingsData }
   const avg =
     serviceRatings.length === 0
       ? 0
-      : (serviceRatings.reduce((a, b) => a + b, 0) / serviceRatings.length).toFixed(1);
+      : serviceRatings.reduce((a, b) => a + b, 0) / serviceRatings.length;
 
   const addRating = (value) => {
-    const updated = { ...ratingsData, [item.name]: [...serviceRatings, value] };
+    const updated = {
+      ...ratingsData,
+      [item.name]: [...serviceRatings, value]
+    };
+
     setRatingsData(updated);
     localStorage.setItem("ratings", JSON.stringify(updated));
   };
 
   const addReview = () => {
     if (!review) return;
-    const updated = { ...reviewsData, [item.name]: [...serviceReviews, review] };
+
+    const updated = {
+      ...reviewsData,
+      [item.name]: [...serviceReviews, review]
+    };
+
     setReviewsData(updated);
     localStorage.setItem("reviews", JSON.stringify(updated));
     setReview("");
@@ -91,39 +112,52 @@ function Card({ item, reviewsData, ratingsData, setReviewsData, setRatingsData }
           <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-lg font-bold">
             {item.name.charAt(0)}
           </div>
+
           <div>
             <h3 className="font-semibold text-lg">{item.name}</h3>
-            <p className="text-yellow-500 text-sm">⭐ {avg}</p>
+            <p className="text-yellow-500 text-sm">
+              ⭐ {avg.toFixed(1)}
+            </p>
           </div>
         </div>
+
         <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
           {item.category}
         </span>
       </div>
 
+      {/* STAR RATING */}
       <div className="flex gap-1 mt-2 text-xl cursor-pointer">
         {[1, 2, 3, 4, 5].map((star) => (
           <span
             key={star}
             onClick={() => addRating(star)}
-            className={star <= avg ? "text-yellow-400 scale-110" : "text-gray-300"}
+            className={star <= avg ? "text-yellow-400" : "text-gray-300"}
           >
             ★
           </span>
         ))}
       </div>
 
+      {/* DETAILS */}
       <div className="mt-3 text-gray-600 space-y-1">
         <p>📞 {item.phone}</p>
         <p>📍 {item.address}</p>
-        {/* ✅ removed item.city since it doesn't exist, address has the location */}
       </div>
 
+      {/* REVIEWS */}
       <div className="mt-4">
         <b className="text-blue-600">Reviews</b>
+
         {serviceReviews.map((r, i) => (
-          <div key={i} className="bg-gray-100 p-2 mt-1 rounded text-sm">⭐ {r}</div>
+          <div
+            key={i}
+            className="bg-gray-100 p-2 mt-1 rounded text-sm"
+          >
+            ⭐ {r}
+          </div>
         ))}
+
         <div className="flex gap-2 mt-2">
           <input
             value={review}
@@ -131,6 +165,7 @@ function Card({ item, reviewsData, ratingsData, setReviewsData, setRatingsData }
             placeholder="Write review..."
             onChange={(e) => setReview(e.target.value)}
           />
+
           <button
             className="bg-blue-600 text-white px-3 rounded-lg hover:bg-blue-700 transition"
             onClick={addReview}

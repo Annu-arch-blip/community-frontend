@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API = process.env.REACT_APP_API_URL;
+
 function AddServices() {
   const [form, setForm] = useState({
     name: "",
@@ -22,7 +24,7 @@ function AddServices() {
 
     try {
       await axios.post(
-        "http://localhost:5000/add-service",
+        `${API}/add-service`,
         form,
         {
           headers: {
@@ -49,7 +51,10 @@ function AddServices() {
 
   return (
     <div className="flex justify-center mt-10">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow w-96">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 rounded-xl shadow w-96"
+      >
 
         <h2 className="text-xl font-bold mb-4 text-blue-600">
           Add Service
@@ -91,7 +96,7 @@ function AddServices() {
           required
         />
 
-        <input
+        <textarea
           name="description"
           placeholder="Description"
           value={form.description}
@@ -99,7 +104,10 @@ function AddServices() {
           className="w-full border p-2 mb-4 rounded"
         />
 
-        <button className="w-full bg-blue-600 text-white p-2 rounded">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white p-2 rounded"
+        >
           Add Service
         </button>
 
