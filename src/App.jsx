@@ -1,13 +1,13 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./Components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Registerform from "./pages/Registerform";
-import Loginform from "./pages/Loginform";
+import Registerform from "./Pages/Registerform";
+import Loginform from "./Pages/Loginform";
 import Home from "./Pages/Home";
 import FindServices from "./Pages/FindServices";
-import Results from "./pages/Results";
+import Results from "./Pages/Results";
 import AddServices from "./Pages/AddServices";
-import Profile from "./pages/Profile";
-import MyServices from "./pages/MyServices";
+import Profile from "./Pages/Profile";
+import MyServices from "./Pages/MyServices";
 function App() {
   return (
       
