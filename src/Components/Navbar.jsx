@@ -10,6 +10,9 @@ function Navbar() {
   const email = localStorage.getItem("email");
   const phone = localStorage.getItem("phone");
   const token = localStorage.getItem("token");
+  console.log(localStorage.getItem("name"));
+console.log(localStorage.getItem("email"));
+console.log(localStorage.getItem("phone"));
 
   const handleLogout = () => {
     // ✅ clear all keys
