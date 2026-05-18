@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 function Registerform() {
   const [user, setUser] = useState({
@@ -24,7 +25,7 @@ function Registerform() {
     setLoading(true);
 
     try {
-      await axios.post('${API}/register', user);
+       await axios.post(`${API}/register`, user);
       alert("Registered Successfully!");
       navigate("/login");
     } catch (err) {

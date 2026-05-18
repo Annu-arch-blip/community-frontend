@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-const API = process.env.REACT_APP_API_URL;
+const API = import.meta.env.VITE_API_URL;
 
 export default function Results() {
   const location = useLocation();
@@ -18,7 +18,7 @@ export default function Results() {
 
   useEffect(() => {
     axios
-      .get(`${API}/services`)
+      .get(`${API}/search`)
       .then((res) => setServices(res.data))
       .catch((err) => console.log(err));
   }, []);

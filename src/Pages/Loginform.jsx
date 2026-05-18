@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API = process.env.REACT_APP_API_URL;
+const API = import.meta.env.VITE_API_URL
 
 function Loginform() {
   const [email, setEmail] = useState("");

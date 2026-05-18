@@ -8,7 +8,7 @@ function FindServices() {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate("/search", {
+    navigate("/results", {
       state: { serviceType: service, city }
     });
   };

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_API_URL;
+
 function MyServices() {
   const [services, setServices] = useState([]);
   const [editingId, setEditingId] = useState(null);
@@ -47,7 +49,7 @@ function MyServices() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/delete-service/${id}`,
+        `${API}/delete-service/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -71,7 +73,7 @@ function MyServices() {
       category: item.category || "",
       phone: item.phone || "",
       address: item.address || "",
-      city: item.description|| "",
+      description: item.description || "",
     });
   };
 
@@ -81,7 +83,7 @@ function MyServices() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/update-service/${id}`,
+        `${API}/update-service/${id}`,
         editData,
         {
           headers: {
@@ -206,12 +208,12 @@ function MyServices() {
 
                   <input
                     type="text"
-                    placeholder="description"
+                    placeholder="Description"
                     value={editData.description}
                     onChange={(e) =>
                       setEditData({
                         ...editData,
-                        city: e.target.value,
+                        description: e.target.value,
                       })
                     }
                     className="w-full border p-3 rounded-lg"
@@ -239,7 +241,6 @@ function MyServices() {
 
               ) : (
 
-              
                 <div className="flex justify-between items-center">
 
                   <div>
@@ -260,7 +261,7 @@ function MyServices() {
                     </p>
 
                     <p className="text-gray-500 text-sm">
-                      🏙 {item.description}
+                      📝 {item.description}
                     </p>
                   </div>
 
