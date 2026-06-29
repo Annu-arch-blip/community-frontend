@@ -97,7 +97,7 @@ src/
 
 ### Clone Repository
 
-git clone YOUR_FRONTEND_REPOSITORY_URL
+git clone https://github.com/Annu-arch-blip/community-frontend
 
 ### Install Dependencies
 
