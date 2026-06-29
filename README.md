@@ -1,16 +1,146 @@
-# React + Vite
+# Community Service Finder - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack MERN web application that helps users discover and connect with local community service providers such as electricians, plumbers, home tutors, cleaners, carpenters, repair workers, and other household service professionals.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Frontend: https://community-frontend-5k5l.onrender.com
 
-## React Compiler
+Backend API: https://community-backend-mf36.onrender.com
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Project Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Community Service Finder is designed to bridge the gap between users and local service providers. Many local service providers lack an online presence, making it difficult for users to find reliable services quickly.
+
+This platform enables:
+
+* Users to search services by category and location
+* Service providers to register and list their services
+* Secure authentication and profile management
+* Easy service discovery through a responsive interface
+
+---
+
+## Features
+
+### User Features
+
+* User Registration
+* User Login & Logout
+* Profile Management
+* Secure Authentication using JWT
+* Search Services by Category and City
+* View Service Provider Information
+
+### Service Management
+
+* Add New Services
+* Update Existing Services
+* Delete Services
+* View Personal Service Listings
+* Dynamic Service Search Results
+
+### UI Features
+
+* Responsive Design
+* Modern User Interface
+* React Router Navigation
+* Protected Routes
+* Mobile-Friendly Layout
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React.js
+* React Router DOM
+* Axios
+* Tailwind CSS
+* Vite
+
+### Backend
+
+* Node.js
+* Express.js
+* JWT Authentication
+* MongoDB Atlas
+
+---
+
+## Project Structure
+
+src/
+├── components/
+│ └── Navbar.jsx
+│
+├── pages/
+│ ├── Home.jsx
+│ ├── Loginform.jsx
+│ ├── Registerform.jsx
+│ ├── AddServices.jsx
+│ ├── FindServices.jsx
+│ ├── Results.jsx
+│ ├── Profile.jsx
+│ └── MyServices.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+
+---
+
+## Installation
+
+### Clone Repository
+
+git clone YOUR_FRONTEND_REPOSITORY_URL
+
+### Install Dependencies
+
+npm install
+
+### Start Development Server
+
+npm run dev
+
+---
+
+## Screenshots
+
+Add screenshots here:
+
+* Login Page
+* Home Page
+* Find Service Page
+* Add Service Page
+* My Services Page
+* Profile Page
+
+---
+
+## Future Enhancements
+
+* GPS Based Service Discovery
+* User Reviews & Ratings
+* AI-Based Service Recommendations
+* Real-Time Notifications
+* Online Payments
+* Mobile Application
+
+---
+
+## Author
+
+Annu
+
+B.Tech Computer Science Engineering
+
+---
+
+## License
+
+This project is developed for educational and learning purposes.
